@@ -15,7 +15,7 @@ screen = Tk()
 flag = False
 
 
-# functions
+# functions to be used 
 def select_path():
     global flag
     """
@@ -32,19 +32,6 @@ def select_path():
     return True
 
 
-# progress = Progressbar(screen, orient = HORIZONTAL,length = 400, mode='determinate')
-
-# def bar(stream, _chunk, _file_handle, bytes_remaining):
-#     current = ((stream.filesize - bytes_remaining)/stream.filesize)
-#     percent = ('{0:.1f}').format(current*100)
-#     prog = int(50*current)
-#     status = '█' * prog + '-' * (50 - prog)
-#     sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
-#     sys.stdout.flush()
-
-
-
-
 def download_file():
     global flag
     # get user path
@@ -59,16 +46,16 @@ def download_file():
 
     # get the selected path
     user_path = path_label.cget("text")
-    if user_path is None or user_path == "":
+    if user_path is None or user_path == "": # if the user has already selected a path, then they need not be prompted to select the path again
         return
 
-    # when the file is being downloaded we're gonna change the title of the screen to 'downloading'
+    # when the file is being downloaded we're going to change the title of the screen to 'downloading'
     screen.title("Downloading....")
     # Download video
     try:
         mp4_vid = YouTube(get_link).streams.get_by_resolution(variable.get()).download()
 
-    except:
+    except: # if the selected resolution can not be downloaded then download the highest available resolution
         print("Running Except")
         try:
             mp4_vid = YouTube(get_link).streams.get_highest_resolution().download()
@@ -87,7 +74,7 @@ def download_file():
     flag = False
 
 
-res_list = [""]
+res_list = [""] # a list to store the resolutions in which the video whose URL has been entered, is available
 
 
 def get_res():
