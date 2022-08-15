@@ -4,11 +4,9 @@ from moviepy import *
 from moviepy.editor import VideoFileClip
 from pytube import YouTube
 from tkinter.ttk import *
-import time
 from pytube.cli import on_progress
 
 import shutil  # a module that allows us to copy files and folders and move them to whatever location we want
-import asyncio
 import threading
 screen = Tk()
 
